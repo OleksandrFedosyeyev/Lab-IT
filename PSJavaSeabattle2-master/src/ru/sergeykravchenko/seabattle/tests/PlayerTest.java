@@ -29,5 +29,32 @@ import ru.sergeykravchenko.seabattle.player.Player;
  */
 
 public class PlayerTest {
+    private Player testPlayer, testPlayer2;
+    GameSeaBattle game;
 
+    @Rule
+    public Timeout globalTimeout = new Timeout(20000); // 20 seconds max per method tested
+
+    @Test  //(Timeout=20000)
+    public void testPlacePlayerNavy() throws Exception {
+        for (int i=0;i<10000;i++){
+            testPlayer = new Player(null);
+            testPlayer2 = new Player(null);
+            game = new GameSeaBattle(testPlayer,testPlayer2);
+            assertTrue(testPlayer.placePlayerNavy());
+            assertTrue(testPlayer2.placePlayerNavy());
+        }
+    }
+
+    @Test
+    public void testPlace2ndPlayerNavy() throws Exception {
+        for (int i=0;i<10000;i++){
+            testPlayer = new Player(null);
+            testPlayer2 = new Player(null);
+            game = new GameSeaBattle(testPlayer,testPlayer2);
+
+            assertTrue(testPlayer.place2ndPlayerNavy());
+            assertTrue(testPlayer2.place2ndPlayerNavy());
+        }
+    }
 }
